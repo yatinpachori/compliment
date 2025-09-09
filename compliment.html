@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Infinite Compliment Shower for Bhavya 🌸</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(135deg, #ffe6f2, #fff0f8);
+        color: #444;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+      }
+      .app {
+        max-width: 800px;
+        background: white;
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+      h1 {
+        color: #ff4d88;
+      }
+      .bubble {
+        margin: 20px auto;
+        background: #fff0f7;
+        border-radius: 16px;
+        padding: 30px;
+        font-size: 1.6rem;
+        font-weight: 500;
+        color: #d6336c;
+        min-height: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.4s ease;
+        cursor: pointer;
+      }
+      .bubble:hover {
+        transform: scale(1.03);
+      }
+      .controls button {
+        background: #ff4d88;
+        border: none;
+        padding: 10px 18px;
+        margin: 10px;
+        border-radius: 10px;
+        color: white;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      .controls button:hover {
+        background: #d6336c;
+      }
+      #fx {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+      }
+      .heart {
+        position: absolute;
+        animation: rise linear forwards;
+      }
+      @keyframes rise {
+        from {
+          transform: translateY(100vh);
+          opacity: 1;
+        }
+        to {
+          transform: translateY(-20vh);
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app">
+      <h1>💖 Compliment Shower for Bhavya 💖</h1>
+      <div id="fx"></div>
+      <div id="bubble" class="bubble">
+        Click me to see your first compliment 💕
+      </div>
+      <div class="controls">
+        <button onclick="newCompliment()">Next Compliment ✨</button>
+      </div>
+    </div>
+
+    <script>
+      const compliments = [
+        "You make every day brighter 🌸",
+        "Your smile could light up the darkest room 💡",
+        "You’re my forever favorite 💖",
+        "You inspire me to be the best version of myself 🌟",
+        "You’re cuter than a thousand baby pandas 🐼💕",
+        "The world feels softer with you in it 🌷",
+        "Your laugh is the sweetest music 🎶",
+        "Being with you is my happiest place 🏡",
+        "You’re magic in human form ✨",
+        "Even the stars envy your shine 🌌",
+        "You are the reason I believe in love ❤️",
+        "Every little thing you do makes me love you more 💞",
+        "You’re more precious than diamonds 💎",
+        "You’re my best friend and my favorite love story 📖",
+        "You make me fall for you again and again 💓",
+        "I could compliment you forever and still not be done 🌹",
+        "You’re the most beautiful part of my universe 🌍",
+        "Your kindness melts my heart 🫶",
+        "You’re the cutest human alive 🌸",
+        "You are the dream I never want to wake up from 💫",
+        "You make my whole world brighter just by being in it.",
+        "Your laugh is my favorite melody.",
+        "Every time you smile, I forget every worry I had.",
+        "You’re the warmest part of my day.",
+        "Being with you feels like home.",
+        "You have the most beautiful heart I’ve ever seen.",
+        "I fall in love with you more every single day.",
+        "Your eyes hold tiny galaxies I want to get lost in.",
+        "You are my favorite hello and hardest goodbye.",
+        "There’s magic in the way you care.",
+        "You make ordinary things feel extraordinary.",
+        "I love the way you make my chest feel tight in the best way.",
+        "Even your quiet moments are my favorite.",
+        "You inspire me to be better and kinder.",
+        "Your voice is my comfort after a long day.",
+        "I love how brave and soft you are at the same time.",
+        "With you, even silence feels like a conversation.",
+        "You are the calm to my chaos.",
+        "I adore your little habits — they’re all mine now.",
+        "You glow from the inside out.",
+        "If I had a garden of wishes, you’d be the sun that makes it grow.",
+        "You turn my everyday into a story worth telling.",
+        "I love how deeply you love the people you care about.",
+        "I want to collect a thousand mornings with you.",
+        "Your presence makes everything feel right.",
+        "I’m proud of you — more than words can say.",
+        "You make my heart beat like it’s got a secret with you.",
+        "I choose you, over and over, without thinking twice.",
+        "When I think of forever, it’s your face I picture first.",
+        "Your kindness feels like a warm blanket.",
+        "You are my favorite chapter in this wild book called life.",
+        "I love the way you say my name — it sounds like home.",
+        "No distance can dim what I feel for you.",
+        "You fit into my life like the missing piece I didn't know I’d lost.",
+        "I adore how you make room for my weirdness.",
+        "You’re the reason I believe in little miracles.",
+        "Everything about you is quietly extraordinary.",
+        "You’re my forever mood.",
+        "I love you in ways I never knew existed.",
+      ];
+
+      // infinite compliments: always pick random
+      function newCompliment() {
+        const bubble = document.getElementById("bubble");
+        const text =
+          compliments[Math.floor(Math.random() * compliments.length)];
+        bubble.textContent = text;
+        spawnHeart();
+      }
+
+      // floating hearts
+      function spawnHeart() {
+        const fx = document.getElementById("fx");
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.textContent = ["💖", "💕", "💗", "💓", "💞"][
+          Math.floor(Math.random() * 5)
+        ];
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = 20 + Math.random() * 20 + "px";
+        heart.style.animationDuration = 3 + Math.random() * 3 + "s";
+        fx.appendChild(heart);
+        setTimeout(() => heart.remove(), 7000);
+      }
+
+      // click bubble for compliments too
+      document
+        .getElementById("bubble")
+        .addEventListener("click", newCompliment);
+    </script>
+  </body>
+</html>
